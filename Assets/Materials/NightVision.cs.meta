@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 38b27e02f67ccec41a3b5814bf403b72
+timeCreated: 1462612703
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - nightvisionShader: {fileID: 4800000, guid: 4085861bc2679944184d2dc23beab920, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

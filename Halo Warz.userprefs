@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\Downloads\TankBattle-dev\TankBattle-dev\TankServerApp\Assets\TANKS\Scripts\Managers\TankManager.cs">
+    <Files>
+      <File FileName="..\..\Downloads\TankBattle-dev\TankBattle-dev\TankServerApp\Assets\TANKS\Scripts\Managers\GameManager.cs" Line="4" Column="3" />
+      <File FileName="..\..\Downloads\TankBattle-dev\TankBattle-dev\TankServerApp\Assets\TANKS\Scripts\Managers\TankManager.cs" Line="43" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
