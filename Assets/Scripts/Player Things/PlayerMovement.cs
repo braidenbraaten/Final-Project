@@ -37,7 +37,17 @@ public class PlayerMovement : MonoBehaviour {
 
         force = Vector3.ClampMagnitude(force + rb.velocity, maxSpeed);
 
+        //Jumping!  Make sure to change / add a limit to how far up you can jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           
+            force.y += 200.0f;
+            
+        }
+
         rb.AddForce(force);
+
+       
     }
 
 
