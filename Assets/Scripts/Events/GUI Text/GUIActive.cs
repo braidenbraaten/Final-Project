@@ -28,18 +28,18 @@ public class GUIActive : MonoBehaviour {
     {
 
 
-        //textRender.enabled = false;
-        //textObject.GetComponent<MeshRenderer>().enabled = false;
-        //textObject.SetActive(false);
+      //makes sure that the text doesnt appear / show until the player steps into it's range
+        textObject.GetComponent<MeshRenderer>().enabled = false;
+       
 
 
         resetTime = timer;
         
     }
 
-    // Use this for initialization
+    
 
-
+    //init the trigger
     void OnTriggerEnter()
     {
 

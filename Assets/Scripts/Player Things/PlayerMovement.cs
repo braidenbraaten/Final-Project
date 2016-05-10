@@ -2,16 +2,22 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
+    //the player game object (overall player)
     public GameObject Player1;
+    //the camera for the player
     public Camera playerCamera;
+    //speed of player movement
     public float speed;
+    //speed of player cam movement
     public float camSpeed;
     Rigidbody rb;
     Vector3 cameraMove;
     public float maxSpeed;
 
     float camRestraint;
-    
+
+    private float rotationX;
+    private float rotationY;
 
     // Use this for initialization
     void Start () {
@@ -55,27 +61,36 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
+        
         //50 max on the camera rotation 310 max 
-        float camMoveVertical = Input.GetAxis("Mouse X");
-        float camMoveHorizontal = Input.GetAxis("Mouse Y");
+        rotationX += Input.GetAxis("Mouse X") * camSpeed;
+        rotationY += -(Input.GetAxis("Mouse Y") * camSpeed);
 
         //playerCamera.transform.Rotate(-camMoveVertical * camSpeed, camMoveHorizontal * camSpeed, 0.0f);
 
         //Rotation left and right
-        Player1.transform.Rotate(0.0f, camMoveVertical * camSpeed, 0.0f);
+
+        Player1.transform.rotation = Quaternion.identity;
+
+        Player1.transform.Rotate(0.0f, rotationX, 0.0f);
 
         //camera move up and down 
-       
-       // if (playerCamera.transform.rotation.x >= 0 && playerCamera.transform.rotation.x <= 50)
-       // {
-       
-        
+
+        // if (playerCamera.transform.rotation.x >= 0 && playerCamera.transform.rotation.x <= 50)
+        // {
+
+
 
         //      Work on camera Restraints!!!!
 
-       // if(playerCamera.transform.rotation.x >= 0.0f && playerCamera.transform.rotation.x < 50 || playerCamera.transform.rotation.x > 310 && playerCamera.transform.rotation.x <= 360.0f || playerCamera.transform.rotation.x >= 0 && playerCamera.transform.rotation.x < 3 || playerCamera.transform.rotation.x <= 360 && playerCamera.transform.rotation.x > 357)
-            playerCamera.transform.Rotate(-camMoveHorizontal * camSpeed, 0.0f, 0.0f);
-        Debug.Log(Input.GetAxisRaw("Mouse Y"));
+        // if(playerCamera.transform.rotation.x >= 0.0f && playerCamera.transform.rotation.x < 50 || playerCamera.transform.rotation.x > 310 && playerCamera.transform.rotation.x <= 360.0f || playerCamera.transform.rotation.x >= 0 && playerCamera.transform.rotation.x < 3 || playerCamera.transform.rotation.x <= 360 && playerCamera.transform.rotation.x > 357)
+
+        if (rotationY <= 60 && rotationY >= -50)
+        {
+            playerCamera.transform.localRotation = Quaternion.identity;
+            playerCamera.transform.Rotate(rotationY, 0.0f, 0.0f);
+        }
+      
       //  }
     }
     
