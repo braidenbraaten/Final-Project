@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 //This object should hold object 1 as the first dim object, and the second as the second dim object
 
 
@@ -19,6 +20,7 @@ public class ObjectSwitchTemplate : MonoBehaviour {
     public List<GameObject> Dimension_two_Items;
     int rngDim1;
     int rngDim2;
+    
 
 	void Start () {
 

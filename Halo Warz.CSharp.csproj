@@ -68,8 +68,8 @@
     <Compile Include="Assets\RainStuff\Prefab\RainCollision.cs" />
     <Compile Include="Assets\RainStuff\Prefab\RainScript.cs" />
     <Compile Include="Assets\RainStuff\Prefab\RainScript2D.cs" />
-    <Compile Include="Assets\Scripts\Events\GUIActive.cs" />
-    <Compile Include="Assets\Scripts\Events\InteractWith.cs" />
+    <Compile Include="Assets\Scripts\Events\GUI Text\GUIActive.cs" />
+    <Compile Include="Assets\Scripts\Events\GUI Text\InteractWith.cs" />
     <Compile Include="Assets\Scripts\Events\ObjectSwitchTemplate.cs" />
     <Compile Include="Assets\Scripts\GameStates.cs" />
     <Compile Include="Assets\Scripts\Player Things\PlayerMovement.cs" />

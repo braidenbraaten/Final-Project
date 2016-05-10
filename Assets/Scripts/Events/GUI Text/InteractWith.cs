@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// This script will make the GUI text follow the player as they move around
+/// </summary>
+
+
 public class InteractWith : MonoBehaviour {
     //The overall interactible game object
     GameObject interactObject;
@@ -25,7 +30,7 @@ public class InteractWith : MonoBehaviour {
         playerPos = PlayerObject.transform.position;
         
         //sets the displayed text output
-        displayText.text = "Key to Front Door";
+        //displayText.text = "Key to Front Door";
         
         //Makes the text look and follow the player while staying stationary
         displayText.transform.LookAt(playerPos);

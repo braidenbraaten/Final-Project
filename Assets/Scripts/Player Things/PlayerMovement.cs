@@ -10,13 +10,15 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 cameraMove;
     public float maxSpeed;
 
+    float camRestraint;
+    
 
     // Use this for initialization
     void Start () {
 
         Player1 = this.gameObject;
         rb = Player1.GetComponent<Rigidbody>();
-    
+        camRestraint = 0;
         
     }
 
@@ -66,7 +68,14 @@ public class PlayerMovement : MonoBehaviour {
        
        // if (playerCamera.transform.rotation.x >= 0 && playerCamera.transform.rotation.x <= 50)
        // {
+       
+        
+
+        //      Work on camera Restraints!!!!
+
+       // if(playerCamera.transform.rotation.x >= 0.0f && playerCamera.transform.rotation.x < 50 || playerCamera.transform.rotation.x > 310 && playerCamera.transform.rotation.x <= 360.0f || playerCamera.transform.rotation.x >= 0 && playerCamera.transform.rotation.x < 3 || playerCamera.transform.rotation.x <= 360 && playerCamera.transform.rotation.x > 357)
             playerCamera.transform.Rotate(-camMoveHorizontal * camSpeed, 0.0f, 0.0f);
+        Debug.Log(Input.GetAxisRaw("Mouse Y"));
       //  }
     }
     

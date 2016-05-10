@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/// <summary>
+/// This will make the game object osolate / fade in and out when the player enters within range of the collider
+
+/// </summary>
+
+
 public class GUIActive : MonoBehaviour {
     public bool IsGUIShowing;
     public GameObject textObject;
-    public GameObject Player;
+    
 
     public float timer;
     
@@ -22,8 +29,10 @@ public class GUIActive : MonoBehaviour {
 
 
         //textRender.enabled = false;
-        textObject.GetComponent<MeshRenderer>().enabled = false;
-     
+        //textObject.GetComponent<MeshRenderer>().enabled = false;
+        //textObject.SetActive(false);
+
+
         resetTime = timer;
         
     }
@@ -34,10 +43,11 @@ public class GUIActive : MonoBehaviour {
     void OnTriggerEnter()
     {
 
-
+        //textObject.SetActive(true);
         textObject.GetComponent<MeshRenderer>().enabled = true;
         timer1 = true;
         finishTime = false;
+        
         
         
     }
