@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
     private float rotationX;
     private float rotationY;
 
+    Ray playerInteractRay;
+
     // Use this for initialization
     void Start () {
 
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
         rb = Player1.GetComponent<Rigidbody>();
         camRestraint = 0;
         
+        playerInteractRay = new Ray(Player1.transform.position, playerCamera.transform.root.forward);
     }
 
     // Update is called once per frame
@@ -61,6 +64,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
+
+        Debug.DrawRay(playerInteractRay.origin, playerInteractRay.direction, Color.red);
         
         //50 max on the camera rotation 310 max 
         rotationX += Input.GetAxis("Mouse X") * camSpeed;
