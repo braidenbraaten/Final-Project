@@ -67,7 +67,7 @@ public class Inventory : MonoBehaviour {
         {
             if (inventoryItems[i].name == itemName)
             {
-                inventoryItems.con
+               // inventoryItems.con
             }
         }
     }

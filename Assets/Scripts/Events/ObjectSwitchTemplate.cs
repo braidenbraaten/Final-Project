@@ -7,70 +7,66 @@ using System.Collections.Generic;
 
 
 public class ObjectSwitchTemplate : MonoBehaviour {
-    //do you want rng or just two set objects everytime?
-    public bool rngMode;
-    // Use this for initialization
-    public GameObject Object1;
-    public GameObject Object2;
-    public bool ob1;
-    public bool ob2;
-    //the items that are from the First dimension
-    public List<GameObject> Dimension_one_Items;
-    //Items that are from the Second dimension
-    public List<GameObject> Dimension_two_Items;
-    int rngDim1;
-    int rngDim2;
+    
+    //the objects in the set / 1 object from each dim.
+    public GameObject dim1Object;
+    public GameObject dim2Object;
+
+    //the offsets for the objects    MAY NEED A SWITCH STATEMENT FOR THE DIFFERENT SETS TO HAVE DIFF. OFFSETS!!!!!!
+
+        //pos offsets
+    public Vector3 dim1_PosOffset;
+    public Vector3 dim2_PosOffset;
+
+    //rotation offsets
+    public Quaternion dim1_RotationOffset;
+    public Quaternion dim2_RotationOffset;
+
+    //scale offsets
+    public Vector3 dim1_ScaleOffset;
+    public Vector3 dim2_ScaleOffset;
+
+    //this bool will state if the dim. 1 object or dim 2 object will be in view
+    public bool Dim1InView;
+
+    
+  
     
 
 	void Start () {
 
-        ob1 = false;
-        ob2 = false;
-        Object1.SetActive(false);
-        Object2.SetActive(false);
-        //sets the rng range to the amount of items in each dim
-        rngDim1 = Random.Range(0, Dimension_one_Items.Count);
-        rngDim2 = Random.Range(0,Dimension_two_Items.Count);
+        //we want the second dim. objects to be in the current dim initially
+        //Dim1InView = false;
+        //sets the objects to be invis
+        dim1Object.SetActive(false);
+        //dim2Object.SetActive(false);
+
         
-      
+
 	}
 
-    // When it comes to the lists that we need for the dim objects, we are going to need a tag for each item so we can identify it and place it in the correct spot;
+    
 	
 	// Update is called once per frame
 	void Update () {
-        if (ob1 == true && ob2 == false)
+
+        //if dim 2 object is sapposed to be in view 
+        if (Dim1InView == false)
         {
-            Object1.SetActive(true);
-            //ob1Pos.transform.position = this.transform.position;
-            Object1.transform.position = this.transform.position;
-            Object2.SetActive(false);
+            dim1Object.SetActive(false);
+            dim2Object.transform.position = this.transform.position + dim2_PosOffset;
+            dim2Object.transform.rotation = dim2_RotationOffset;
+            dim2Object.transform.localScale += dim2_ScaleOffset;
+            dim2Object.SetActive(true);
+        }
+        else if (Dim1InView == true){
+            dim2Object.SetActive(false);
+            dim1Object.transform.position = this.transform.position + dim1_PosOffset;
+            dim1Object.transform.rotation = dim1_RotationOffset;
+            dim1Object.transform.localScale += dim1_ScaleOffset;
+            dim1Object.SetActive(true);
         }
 
-        if (ob2 == true && ob1 == false)
-        {
-            Object2.SetActive(true);
-            Object2.transform.position = this.transform.position;
-            Object1.SetActive(false);
-        }
-
-        if (ob1 == true && ob2 == true)
-        {
-            Object1.SetActive(false);
-            Object2.SetActive(false);
-        }
-
-        if (ob1 == false)
-        {
-            Object1.SetActive(false);
-        
-        }
-
-        if (ob2 == false)
-        {
-            Object2.SetActive(false);
-        }
-        
         
 	
 	}

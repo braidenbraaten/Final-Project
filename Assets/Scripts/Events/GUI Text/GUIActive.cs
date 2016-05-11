@@ -11,11 +11,12 @@ using System.Collections;
 public class GUIActive : MonoBehaviour {
     public bool IsGUIShowing;
     public GameObject textObject;
-    
-
+    public Light guiLight;
+    float lightPulse;
+    public float lightPulseTimer;
     public float timer;
-    
 
+    float prevLightTimer;
 
     float resetTime;
 
@@ -26,12 +27,12 @@ public class GUIActive : MonoBehaviour {
 
     void Start()
     {
-
+        lightPulse = 0;
 
       //makes sure that the text doesnt appear / show until the player steps into it's range
         textObject.GetComponent<MeshRenderer>().enabled = false;
-       
 
+        prevLightTimer = lightPulseTimer;
 
         resetTime = timer;
         
@@ -97,8 +98,27 @@ public class GUIActive : MonoBehaviour {
     }
 
 
+    bool lightUp = true;
+   
+
     void Update()
     {
+        lightPulseTimer -= Time.deltaTime;
+
+        //resets the timer 
+        if (lightPulseTimer <= 0)
+            lightPulseTimer = prevLightTimer;
+        
+        if (lightUp == true || lightPulse <= 0)
+        {
+            lightPulse = Mathf.Lerp(0.0f, 6.0f, lightPulseTimer);
+        }
+
+        if (lightUp == false || lightPulse >= 6)
+        {
+            lightPulse = Mathf.Lerp(6.0f, 0.0f, lightPulseTimer);
+        }
+        guiLight.intensity = lightPulse;
 
         if (finishTime == true)
         {
