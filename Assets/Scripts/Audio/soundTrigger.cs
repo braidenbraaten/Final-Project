@@ -10,7 +10,7 @@ public class soundTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        AudioSource.PlayClipAtPoint(sound, new Vector3(-23, 0.5f, 12), 1.0f);
+        AudioSource.PlayClipAtPoint(sound, new Vector3(7, 0.5f, 12), 1.0f);
     }
 
     void OnTriggerExit(Collider other)
