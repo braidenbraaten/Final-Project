@@ -6,6 +6,7 @@ public class Puzzle_1 : MonoBehaviour {
 
     //the sets that contain the two different dim objects
     public ObjectSwitchTemplate[] Sets;
+    
 
     //the sockets th
     public  Socket[] Sockets;
@@ -16,7 +17,7 @@ public class Puzzle_1 : MonoBehaviour {
     {
         //sets to 0 so we can have a clean rotation
         rotationIndex = 0;
-
+     
 
     }
 
@@ -82,6 +83,11 @@ public class Puzzle_1 : MonoBehaviour {
 
                 break;
         }
+    }
+
+    void resetRotIndex()
+    {
+        rotationIndex = 0;
     }
 
 }
