@@ -25,27 +25,39 @@ public class Puzzle_1 : MonoBehaviour {
 
     void Update()
     {
-        //the R key will rotate the objects Counter Clockwise 
+        
+       
+
+        //a function that will rotate the sets accordingly
+        RotateSets(rotationIndex);
+
+    }
+
+    //the function that will rotate the sets 
+    void RotateRKey()
+    {
         if (Input.GetKeyUp(KeyCode.R) && rotationIndex < 4)
         {
             rotationIndex += 1;
-        } else if (rotationIndex >= 4)
+        }
+        else if (rotationIndex >= 4)
         {
             rotationIndex = 0;
         }
+    }
 
-        //the T key will make the objects switch between dimensions (1 and 2)
+    //the function that will switch the sets from 1 dim to 2 dim
+    void switchDimTKey()
+    {
         if (Input.GetKeyUp(KeyCode.T))
         {
             for (int i = 0; i < Sets.Length; i++)
             {
-                Sets[i].Dim1InView = !Sets[i].Dim1InView; 
+                Sets[i].Dim1InView = !Sets[i].Dim1InView;
             }
         }
-
-        RotateSets(rotationIndex);
-
     }
+
 
     //this is a quick patch to our problem, if we have time to polish I sugest that we look for a more optimized solution
     void RotateSets(int rotationNum)

@@ -27,10 +27,20 @@ public class PlayerInteract : MonoBehaviour {
             Debug.Log(hit.collider.gameObject.tag);
         }
 
-        if (hit.collider.gameObject.tag == "Interactible" && Input.GetKeyDown(KeyCode.Z))
+        if (hit.collider.gameObject.tag == "Till" && Input.GetKeyDown(KeyCode.Z))
         {
             GameObject.Find("Puzzle_1").BroadcastMessage("resetRotIndex");
             Debug.Log("the puzzle has reset");
+        }
+
+        if (hit.collider.gameObject.tag == "Toilet")
+        {
+            GameObject.Find("Puzzle_1").BroadcastMessage("RotateRKey");
+        }
+
+        if (hit.collider.gameObject.tag == "TV")
+        {
+            GameObject.Find("Puzzle_1").BroadcastMessage("switchDimTKey");
         }
             
         
