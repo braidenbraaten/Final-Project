@@ -14,6 +14,8 @@ public class PlayerInteract : MonoBehaviour {
     public float rayDistance;
     Ray p1Ray;
     public bool puzzle1_Active;
+    public KeyCode grabCode;
+    public KeyCode letGoCode;
 
     bool hasGrabed = false;
 
@@ -37,41 +39,46 @@ public class PlayerInteract : MonoBehaviour {
             Debug.Log(hit.collider.gameObject.tag);
         }
 
-        if (hit.collider.gameObject.tag == "Can Grab")
+        if (hit.collider != null)
         {
-            if (Input.GetKeyDown(KeyCode.G)){ hasGrabed = true;}
- 
-            
+            //for any object that we can grab
+            if (hit.collider.gameObject.tag == "Can Grab")
+            {
+                if (Input.GetKeyDown(grabCode)) { hasGrabed = true; }
 
-            
+
+
+
+            }
+
+
+
+            //if chapter 1 (or something like that) 
+            if (puzzle1_Active == true)
+            {
+                //if we interact with the Till
+                if (hit.collider.gameObject.tag == "Till")
+                {
+                    GameObject.Find("Puzzle_1").BroadcastMessage("resetRotIndex");
+
+
+                }
+
+
+                //if we interact with the Toilet
+                if (hit.collider.gameObject.tag == "Toilet")
+                {
+                    GameObject.Find("Puzzle_1").BroadcastMessage("RotateRKey");
+                }
+
+                //if we interact with the TV
+                if (hit.collider.gameObject.tag == "TV")
+                {
+                    GameObject.Find("Puzzle_1").BroadcastMessage("switchDimTKey");
+                }
+            }
+
         }
-
-        //if chapter 1 (or something like that) 
-        if (puzzle1_Active == true)
-        {
-            //if we interact with the Till
-            if (hit.collider.gameObject.tag == "Till")
-            {
-                GameObject.Find("Puzzle_1").BroadcastMessage("resetRotIndex");
-                
-                Debug.Log("the puzzle has reset");
-            }
-
-
-            //if we interact with the Toilet
-            if (hit.collider.gameObject.tag == "Toilet")
-            {
-                GameObject.Find("Puzzle_1").BroadcastMessage("RotateRKey");
-            }
-
-            //if we interact with the TV
-            if (hit.collider.gameObject.tag == "TV")
-            {
-                GameObject.Find("Puzzle_1").BroadcastMessage("switchDimTKey");
-            }
-        }
-            
-        
 
     }
 
@@ -82,18 +89,13 @@ public class PlayerInteract : MonoBehaviour {
         p1Ray.direction = playerCam.transform.forward + camRayRotationOffRot;
         Debug.DrawRay(p1Ray.origin, p1Ray.direction * rayDistance, Color.red);
 
-        if (hasGrabed == true)
-        {
-
-            GameObject.Find(hit.collider.gameObject.name).transform.SetParent(playerTransform);
-
+        //grabbing the object
+        if (hasGrabed == true){GameObject.Find(hit.collider.gameObject.name).transform.SetParent(playerCam.transform);
         }
-        else if (hasGrabed == false)
-        {
-            GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null);
-        }
+        //letting go of the object 
+        else if (hasGrabed == false){GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null);}
 
-        if (Input.GetKeyUp(KeyCode.H))
+        if (Input.GetKeyUp(letGoCode))
         {
             hasGrabed = false;
         }

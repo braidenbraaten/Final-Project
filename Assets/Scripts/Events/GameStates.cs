@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// different states and chapters for the game
+/// </summary>
+
 public class GameStates : MonoBehaviour {
     //different states of the game
     enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT };

@@ -33,6 +33,14 @@ public class Puzzle_1 : MonoBehaviour {
         //a function that will rotate the sets accordingly
         RotateSets(rotationIndex);
 
+        for (int i = 0; i < Sets.Length; i++)
+        {
+            if (Sets[i].transform == Sockets[3])
+            {
+                //make the set that is currently at the TV's disapear and be replaced by two textures (1 for each TV)
+            }
+        }
+
     }
 
     //the function that will rotate the sets 
@@ -111,6 +119,7 @@ public class Puzzle_1 : MonoBehaviour {
     {
         if (Input.GetKeyUp(interactKey))
         {
+            Debug.Log("the sets have been reset");
             rotationIndex = 0;
             switchToSecondDim();
         }
