@@ -6,7 +6,9 @@ public class Puzzle_1 : MonoBehaviour {
 
     //the sets that contain the two different dim objects
     public ObjectSwitchTemplate[] Sets;
-    
+    public KeyCode interactKey;
+    public KeyCode rotateKey;
+    public KeyCode switchKey;
 
     //the sockets th
     public  Socket[] Sockets;
@@ -36,7 +38,7 @@ public class Puzzle_1 : MonoBehaviour {
     //the function that will rotate the sets 
     void RotateRKey()
     {
-        if (Input.GetKeyUp(KeyCode.R) && rotationIndex < 4)
+        if (Input.GetKeyUp(rotateKey) && rotationIndex < 4)
         {
             rotationIndex += 1;
         }
@@ -49,12 +51,20 @@ public class Puzzle_1 : MonoBehaviour {
     //the function that will switch the sets from 1 dim to 2 dim
     void switchDimTKey()
     {
-        if (Input.GetKeyUp(KeyCode.T))
+        if (Input.GetKeyUp(switchKey))
         {
             for (int i = 0; i < Sets.Length; i++)
             {
                 Sets[i].Dim1InView = !Sets[i].Dim1InView;
             }
+        }
+    }
+
+    void switchToSecondDim()
+    {
+        for (int i = 0; i < Sets.Length; i++)
+        {
+            Sets[i].Dim1InView = false;
         }
     }
 
@@ -99,7 +109,11 @@ public class Puzzle_1 : MonoBehaviour {
 
     void resetRotIndex()
     {
-        rotationIndex = 0;
+        if (Input.GetKeyUp(interactKey))
+        {
+            rotationIndex = 0;
+            switchToSecondDim();
+        }
     }
 
 }
