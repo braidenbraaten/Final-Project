@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 /// <summary>
 /// different states and chapters for the game
 /// </summary>
@@ -16,6 +16,7 @@ public class GameStates : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         states = States.MAIN_MENU;
+        chapters = Chapters.CHAPTER_0;
 	}
 	
 	// Update is called once per frame
@@ -24,10 +25,11 @@ public class GameStates : MonoBehaviour {
         switch (states)
         {
             case States.MAIN_MENU:
-
+                SceneManager.LoadScene("mainMenu");
+            
                 break;
             case States.PLAY:
-
+                SceneManager.LoadScene("FinalProject");
                 //if you are currently in play mode, check to see what chapter you are in
                 switch (chapters)
                 {

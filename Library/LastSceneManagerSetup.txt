@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/braiden.braaten/Desktop/Halo Warz/Assets/FinalProject.unity
+- path: Assets/mainMenu.unity
   isLoaded: 1
   isActive: 1
