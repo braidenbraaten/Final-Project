@@ -9,6 +9,14 @@ public class Puzzle_1 : MonoBehaviour {
     public KeyCode interactKey;
     public KeyCode rotateKey;
     public KeyCode switchKey;
+    public Texture[] hotdogSetPics;
+    public Texture[] moneySetPics;
+    public Texture[] sandwichSetPics;
+    public Texture[] voidSetPics;
+    //TV screens, aka the planes that will display the textures
+    public GameObject screen1;
+    public GameObject screen2;
+
 
     //the sockets th
     public  Socket[] Sockets;
@@ -83,10 +91,28 @@ public class Puzzle_1 : MonoBehaviour {
         switch (rotationNum)
         {
             case 0:
+
+                //hot dog and fingers
                 Sets[0].transform.position = Sockets[0].transform.position;
+                //moneys
                 Sets[1].transform.position = Sockets[1].transform.position;
+                //samwich and arm
                 Sets[2].transform.position = Sockets[2].transform.position;
+                //void
                 Sets[3].transform.position = Sockets[3].transform.position;
+                //make sure that the prev set that was in the socket is re-enabled and that the current set in the socket is disabled 
+                Sets[3].enabled = false;
+                Sets[0].enabled = true;
+
+                if (Sets[3].Dim1InView == false)
+                {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = voidSetPics[0];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = voidSetPics[1];
+                }
+                else {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = voidSetPics[1];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = voidSetPics[0];
+                }
                 break;
 
             case 1:
@@ -94,6 +120,20 @@ public class Puzzle_1 : MonoBehaviour {
                 Sets[1].transform.position = Sockets[2].transform.position;
                 Sets[2].transform.position = Sockets[3].transform.position;
                 Sets[3].transform.position = Sockets[0].transform.position;
+
+                //set 3 is enabled, set 2 is disabled 
+                Sets[3].enabled = true;
+                Sets[2].enabled = false;
+
+                if (Sets[2].Dim1InView == false)
+                {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = sandwichSetPics[0];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = sandwichSetPics[1];
+                }
+                else {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = sandwichSetPics[1];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = sandwichSetPics[0];
+                }
 
                 break;
 
@@ -103,6 +143,19 @@ public class Puzzle_1 : MonoBehaviour {
                 Sets[2].transform.position = Sockets[0].transform.position;
                 Sets[3].transform.position = Sockets[1].transform.position;
 
+                //set 2 is enabled and set 1 is disabled 
+                Sets[2].enabled = true;
+                Sets[1].enabled = false;
+
+                if (Sets[1].Dim1InView == false)
+                {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = moneySetPics[0];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = moneySetPics[1];
+                }
+                else {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = moneySetPics[1];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = moneySetPics[0];
+                }
                 break;
 
             case 3:
@@ -111,6 +164,19 @@ public class Puzzle_1 : MonoBehaviour {
                 Sets[2].transform.position = Sockets[1].transform.position;
                 Sets[3].transform.position = Sockets[2].transform.position;
 
+                //set 0 is disabled and set 1 is enabled 
+                Sets[0].enabled = false;
+                Sets[1].enabled = true;
+
+                if (Sets[0].Dim1InView == false)
+                {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = hotdogSetPics[0];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = hotdogSetPics[1];
+                }
+                else {
+                    screen1.GetComponent<MeshRenderer>().material.mainTexture = hotdogSetPics[1];
+                    screen2.GetComponent<MeshRenderer>().material.mainTexture = hotdogSetPics[0];
+                }
                 break;
         }
     }
