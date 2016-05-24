@@ -76,6 +76,7 @@ public class Puzzle_1 : MonoBehaviour {
         }
     }
 
+   
     void switchToSecondDim()
     {
         for (int i = 0; i < Sets.Length; i++)

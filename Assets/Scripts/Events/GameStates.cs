@@ -10,13 +10,14 @@ public class GameStates : MonoBehaviour {
     enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT };
 
     //different chapters / checkpoints? when the player is either in play or pause
-    enum Chapters {CHAPTER_0, CHAPTER_1, CHAPTER_2, CHAPTER_3 };
+    enum Chapters {CHAPTER_0, CHAPTER_1, CHAPTER_2, CHAPTER_3, CHAPTER_NULL};
     States states;
     Chapters chapters;
 	// Use this for initialization
 	void Start () {
+        //should change to team logo intro and then start main menu scene 
         states = States.MAIN_MENU;
-        chapters = Chapters.CHAPTER_0;
+        chapters = Chapters.CHAPTER_NULL;
 	}
 	
 	// Update is called once per frame
@@ -25,11 +26,13 @@ public class GameStates : MonoBehaviour {
         switch (states)
         {
             case States.MAIN_MENU:
+                if(SceneManager.GetActiveScene().name != "mainMenu")
                 SceneManager.LoadScene("mainMenu");
             
                 break;
             case States.PLAY:
-                SceneManager.LoadScene("FinalProject");
+                if (SceneManager.GetActiveScene().name != "FinalProject")
+                    SceneManager.LoadScene("FinalProject");
                 //if you are currently in play mode, check to see what chapter you are in
                 switch (chapters)
                 {
@@ -45,6 +48,9 @@ public class GameStates : MonoBehaviour {
                     case Chapters.CHAPTER_3:
 
                         break;
+                    case Chapters.CHAPTER_NULL:
+
+                        break;
                 }
 
 
@@ -57,9 +63,16 @@ public class GameStates : MonoBehaviour {
 
                 break;
             case States.QUIT:
+                
 
                 break;
         }
 	
 	}
+
+    void setPlay()
+    {
+        Debug.Log("Clicked Play");
+        states = States.PLAY;
+    }
 }

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 cameraMove;
     public float maxSpeed;
 
-    float camRestraint;
+ 
 
     private float rotationX;
     private float rotationY;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 
         Player1 = this.gameObject;
         rb = Player1.GetComponent<Rigidbody>();
-        camRestraint = 0;
+    
         
         playerInteractRay = new Ray(Player1.transform.position, playerCamera.transform.root.forward);
     }

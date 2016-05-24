@@ -7,7 +7,7 @@ using System.Collections;
 
 public class Inter_Object : MonoBehaviour {
 
-
+    
     void Start()
     {
 
