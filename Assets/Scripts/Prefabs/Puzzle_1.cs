@@ -72,6 +72,7 @@ public class Puzzle_1 : MonoBehaviour {
             for (int i = 0; i < Sets.Length; i++)
             {
                 Sets[i].Dim1InView = !Sets[i].Dim1InView;
+                Debug.Log("Switching dims!");
             }
         }
     }

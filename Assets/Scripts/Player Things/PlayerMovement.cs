@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 cameraMove;
     public float maxSpeed;
 
- 
+    //animation stuff
+    //player Animator
+    public Animator ani;
+    
 
     private float rotationX;
     private float rotationY;
@@ -58,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
 
         rb.AddForce(force);
 
-       
+        ani.SetFloat("Speed", rb.velocity.magnitude);
     }
 
 
@@ -71,6 +74,9 @@ public class PlayerMovement : MonoBehaviour {
         rotationX += Input.GetAxis("Mouse X") * camSpeed;
         rotationY += -(Input.GetAxis("Mouse Y") * camSpeed);
 
+
+        //Debug.Log("Mouse X" + rotationX + " " + "Mouse Y:" + rotationY );
+        
         //playerCamera.transform.Rotate(-camMoveVertical * camSpeed, camMoveHorizontal * camSpeed, 0.0f);
 
         //Rotation left and right

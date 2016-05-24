@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Player Things\PlayerPhone.cs" />
     <Compile Include="Assets\Scripts\Prefabs\LightFlicker.cs" />
     <Compile Include="Assets\Scripts\Prefabs\LightningFlash.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\Notifications\HoverOver.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle_1.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Socket.cs" />
   </ItemGroup>

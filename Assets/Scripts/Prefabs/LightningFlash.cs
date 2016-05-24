@@ -22,7 +22,7 @@ public class LightningFlash : MonoBehaviour {
 
         if (Timer <= 0)
         {
-            Timer = initTimer + Random.Range(0, 3);
+            Timer = Random.Range(0, 4);
             thisLight.intensity = 1.65f;
             //play lightning audio clip (or if you want more realistic, make the sound go off a second before the flash)
         }
@@ -30,5 +30,6 @@ public class LightningFlash : MonoBehaviour {
             thisLight.intensity = 0.0f;
         }
 
+        Debug.Log("Timer " + Timer);
 	}
 }

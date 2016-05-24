@@ -24,6 +24,9 @@ public class PlayerInteract : MonoBehaviour {
 
     // Use this for initialization
 
+
+    public Animator ani;
+
     RaycastHit hit;
     void Start () {
         
@@ -44,9 +47,14 @@ public class PlayerInteract : MonoBehaviour {
             //for any object that we can grab
             if (hit.collider.gameObject.tag == "Can Grab")
             {
-                if (Input.GetKeyDown(grabCode)) { hasGrabed = true; }
+                if (Input.GetKeyDown(grabCode)) {
+                    ani.SetTrigger("grab");
 
+                    hasGrabed = true;
+                    
+                }
 
+                
 
 
             }
@@ -75,6 +83,7 @@ public class PlayerInteract : MonoBehaviour {
                 if (hit.collider.gameObject.tag == "TV")
                 {
                     GameObject.Find("Puzzle_1").BroadcastMessage("switchDimTKey");
+                    
                 }
             }
 
@@ -89,17 +98,24 @@ public class PlayerInteract : MonoBehaviour {
         p1Ray.direction = playerCam.transform.forward + camRayRotationOffRot;
         Debug.DrawRay(p1Ray.origin, p1Ray.direction * rayDistance, Color.red);
 
-        //grabbing the object
-        if (hasGrabed == true){GameObject.Find(hit.collider.gameObject.name).transform.SetParent(playerCam.transform);
-        }
-        //letting go of the object 
-        else if (hasGrabed == false){GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null);}
-
-        if (Input.GetKeyUp(letGoCode))
+        if (hit.collider)
         {
-            hasGrabed = false;
-        }
-        
 
+            //grabbing the object
+            if (hasGrabed == true)
+            {
+                GameObject.Find(hit.collider.gameObject.name).transform.SetParent(playerCam.transform);
+
+            }
+            //letting go of the object 
+            else if (hasGrabed == false) { GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null); }
+
+            if (Input.GetKeyUp(letGoCode))
+            {
+                hasGrabed = false;
+                ani.SetBool("hasGrabed", false);
+            }
+
+        }
     }
 }
