@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/mainMenu.unity
+- path: Z:/studio_a/YearONE/Assessment_08-Due06_22_2016/Team Slurp/UNITY ASSETS/Halo
+    Warz/Assets/FinalProject.unity
   isLoaded: 1
   isActive: 1

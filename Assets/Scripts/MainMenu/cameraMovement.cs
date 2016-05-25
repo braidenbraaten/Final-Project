@@ -7,30 +7,30 @@ using System.Collections;
 
 public class cameraMovement : MonoBehaviour {
     public Camera cam;
-    public float maxHeight;
-    public float minHeight;
-
-    bool goUp;
+    Vector3 targetPos;
+    public float speed;
+  
+    Vector3 endPos = new Vector3(0, 0, 0);
 	// Use this for initialization
 	void Start () {
-        goUp = false;
+        //starting pos
+        
+       
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (cam.transform.position.y > maxHeight)
-        {
-            flipDir();
-        }
+        // keeep 170 !
+        if(cam.transform.position.y >= 170)
+        cam.transform.position += Vector3.down;
 
-        if (cam.transform.position.y < minHeight)
-        {
-            flipDir();
-        }
-        
-	}
 
-    void flipDir() { goUp = !goUp; }
+      
+
+
+    }
+
+   
     
 }
