@@ -30,6 +30,6 @@ public class LightningFlash : MonoBehaviour {
             thisLight.intensity = 0.0f;
         }
 
-        Debug.Log("Timer " + Timer);
+       
 	}
 }
