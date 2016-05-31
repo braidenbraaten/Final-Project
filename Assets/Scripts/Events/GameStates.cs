@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameStates : MonoBehaviour {
     //different states of the game
-    enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT };
+    enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT, LOGO };
 
     //different chapters / checkpoints? when the player is either in play or pause
     enum Chapters {CHAPTER_0, CHAPTER_1, CHAPTER_2, CHAPTER_3, CHAPTER_NULL};
@@ -17,6 +17,8 @@ public class GameStates : MonoBehaviour {
 	void Start () {
         //should change to team logo intro and then start main menu scene 
         states = States.MAIN_MENU;
+
+        // the chapters should activate what puzzles are active within the scene, 0 = waking up and locking door, 1 = getting money from the till, 2 = getting the keys from the beverage cooler
         chapters = Chapters.CHAPTER_NULL;
 	}
 	
@@ -37,9 +39,10 @@ public class GameStates : MonoBehaviour {
                 switch (chapters)
                 {
                     case Chapters.CHAPTER_0:
-
+                        // lock the door scene 
                         break;
                     case Chapters.CHAPTER_1:
+                        //should set puzzle 1 to active
 
                         break;
                     case Chapters.CHAPTER_2:
