@@ -13,7 +13,10 @@ public class PlayerInteract : MonoBehaviour {
     public Vector3 camRayRotationOffRot;
     public float rayDistance;
     Ray p1Ray;
+    //puzzle stuff
     public bool puzzle1_Active;
+    public bool puzzle2_Active;
+
     public KeyCode grabCode;
     public KeyCode letGoCode;
 
@@ -26,9 +29,11 @@ public class PlayerInteract : MonoBehaviour {
 
 
     public Animator ani;
-
-    RaycastHit hit;
+    
+    //The hit info that we will receive from the raycast
+    public RaycastHit hit;
     void Start () {
+
         
     }
 
@@ -42,6 +47,7 @@ public class PlayerInteract : MonoBehaviour {
             Debug.Log(hit.collider.gameObject.tag);
         }
 
+        //if we are hitting something and not nothing
         if (hit.collider != null)
         {
             //for any object that we can grab
@@ -67,6 +73,7 @@ public class PlayerInteract : MonoBehaviour {
                 //if we interact with the Till
                 if (hit.collider.gameObject.tag == "Till")
                 {
+                    //reset the sets
                     GameObject.Find("Puzzle_1").BroadcastMessage("resetRotIndex");
 
 
@@ -76,16 +83,23 @@ public class PlayerInteract : MonoBehaviour {
                 //if we interact with the Toilet
                 if (hit.collider.gameObject.tag == "Toilet")
                 {
+                    //rotate the sets
                     GameObject.Find("Puzzle_1").BroadcastMessage("RotateRKey");
                 }
 
                 //if we interact with the TV
                 if (hit.collider.gameObject.tag == "TV")
                 {
+                    //switch the sets
                     GameObject.Find("Puzzle_1").BroadcastMessage("switchDimTKey");
                     
                 }
             }
+
+            //if puzzle 2 is active
+          
+
+            
 
         }
 
@@ -93,7 +107,7 @@ public class PlayerInteract : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        //the ray that the player uses to interact with things
         p1Ray.origin = playerCam.transform.position + camRayOffPos;
         p1Ray.direction = playerCam.transform.forward + camRayRotationOffRot;
         Debug.DrawRay(p1Ray.origin, p1Ray.direction * rayDistance, Color.red);
@@ -107,8 +121,8 @@ public class PlayerInteract : MonoBehaviour {
                 GameObject.Find(hit.collider.gameObject.name).transform.SetParent(playerCam.transform);
 
             }
-            //letting go of the object 
-            else if (hasGrabed == false) { GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null); }
+            //letting go of the object    // MAKE SURE THAT THE OBJECT IS A GRABABLE OBJECT THAT WE ARE SETTING THE PARENT TO NULL FOR !!!!!!!!!!!!!!!!!!!!
+            else if (hasGrabed == false && hit.collider.gameObject.tag == "Can Grab") { GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null); }
 
             if (Input.GetKeyUp(letGoCode))
             {
