@@ -6,8 +6,10 @@ using System.Collections;
 public class Rotation_Wheel : MonoBehaviour {
     public bool hasStarted;
     public GameObject Wheel;
-    //the position on the wheel that we want to hold the keys
+    //the position of the keys
     public Transform Keypos;
+    //the position on the wheel that we want to hold the keys
+    public Transform targetKeyPos;
     public float rotSpeed = 2f;
     void Start()
     {

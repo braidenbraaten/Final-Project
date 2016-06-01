@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Door : MonoBehaviour {
+
+    //The name of the Door
     public string doorName;
 
 

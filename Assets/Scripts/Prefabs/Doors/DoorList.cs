@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 /// <summary>
 ///                                 MAKE SURE TO HAVE ALL OF THE DOORS LISTED HERE!!!!!!!!!!!!!!
+///  (if you can't tell) This is where all of the doors are listed and kept track of    
 /// </summary>
 
 public class DoorList : MonoBehaviour {

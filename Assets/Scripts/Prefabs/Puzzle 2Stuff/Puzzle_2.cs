@@ -10,35 +10,10 @@ using System.Collections;
 ///               LIGHTING: needs to be in a runway fashion, aka... blinking lights moving towards the player, indicating the direction of the keys when they fall 
 /// </summary>
 public class Puzzle_2 : MonoBehaviour {
-    //bool for checking if the start / first door opening has happened 
-    public bool hasStarted;
+    //we want the wheel, the door, the key, the lanes, and what to do with them
 
-    //runway lights in the lane of the beverage cooler
-    public Light[] runway_Lights;
-    private int lightSize;
-
-    //the Key game object
-    public GameObject key;
-
-    //different Lanes within the cooler (remember, only 1 lane is the correct lane!) the 5th lane is the void behind the lanes (if they drop it while the keys arent facing any of the lanes
-    private int[] Lanes = new int[5];
+    public Rotation_Wheel wheel;
+    public Door coolerDoor;
 
 
-	// Use this for initialization
-	void Start () {
-        hasStarted = false;
-        lightSize = runway_Lights.Length; //lightSize is the amount of eliments in the array
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	
-	}
-
-    public int GetLanes(int i)
-    {
-        
-        return Lanes[i];
-    }
 }

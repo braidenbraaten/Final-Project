@@ -75,7 +75,7 @@ public class GameStates : MonoBehaviour {
 
     void setPlay()
     {
-        Debug.Log("Clicked Play");
+       
         states = States.PLAY;
     }
 }
