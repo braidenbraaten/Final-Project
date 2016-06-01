@@ -7,16 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class GameStates : MonoBehaviour {
     //different states of the game
-    enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT, LOGO };
+    public GameObject GameStateObject;
+    public Scene mainMenuScene = SceneManager.GetSceneByName("mainMenu");
+    public Scene finalProjectScene = SceneManager.GetSceneByName("FinalProject");
+
+   public enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT, LOGO };
+    static public bool  haveLoadedMenu = false;
+    static public bool haveLoadedPlay = false;
 
     //different chapters / checkpoints? when the player is either in play or pause
-    enum Chapters {CHAPTER_0, CHAPTER_1, CHAPTER_2, CHAPTER_3, CHAPTER_NULL};
-    States states;
-    Chapters chapters;
-	// Use this for initialization
-	void Start () {
+    public enum Chapters {CHAPTER_0, CHAPTER_1, CHAPTER_2, CHAPTER_3, CHAPTER_NULL};
+   public  States states;
+    public Chapters chapters;
+    // Use this for initialization
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Start () {
         //should change to team logo intro and then start main menu scene 
-        states = States.MAIN_MENU;
+        if (SceneManager.GetActiveScene().name != "FinalProject")
+            states = States.MAIN_MENU;
 
         // the chapters should activate what puzzles are active within the scene, 0 = waking up and locking door, 1 = getting money from the till, 2 = getting the keys from the beverage cooler
         chapters = Chapters.CHAPTER_NULL;
@@ -24,17 +36,30 @@ public class GameStates : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         //switch between the different game states
         switch (states)
         {
             case States.MAIN_MENU:
-                if(SceneManager.GetActiveScene().name != "mainMenu")
-                SceneManager.LoadScene("mainMenu");
+                if (haveLoadedMenu == false)
+                {
+                    
+                    SceneManager.LoadScene("mainMenu");
+                 
+                    haveLoadedMenu = true;
+                }
+               
             
                 break;
             case States.PLAY:
-                if (SceneManager.GetActiveScene().name != "FinalProject")
+                //if (SceneManager.GetActiveScene().name != "FinalProject")
+                if (haveLoadedPlay == false)
+                {
                     SceneManager.LoadScene("FinalProject");
+                
+                    Debug.Log("You have loaded in the final project scene");
+                    haveLoadedPlay = true;
+                }
                 //if you are currently in play mode, check to see what chapter you are in
                 switch (chapters)
                 {
