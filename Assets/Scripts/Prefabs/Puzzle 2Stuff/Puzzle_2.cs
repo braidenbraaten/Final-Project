@@ -11,9 +11,37 @@ using System.Collections;
 /// </summary>
 public class Puzzle_2 : MonoBehaviour {
     //we want the wheel, the door, the key, the lanes, and what to do with them
-
+   
     public Rotation_Wheel wheel;
     public Door coolerDoor;
+    public ItemLanes Lanes;
+
+    //in order to know if the wheel is jammed or spinning
+    public bool hasStarted = false;
+    //determins if the key has been dropped or not
+    public bool hasDropped = false;
+    //audio clip for when the wheel is "Jammed"
+    public AudioClip jammedSound;
+
+    void Update()
+    {
+        //when the player opens the door, the keys will drop
+        if (coolerDoor.open)
+        {
+            hasDropped = true;
+        }
+
+
+
+        if (hasStarted)
+        {
+            if (hasDropped)
+            {
+                
+            }
+        }
+    }
+
 
 
 }
