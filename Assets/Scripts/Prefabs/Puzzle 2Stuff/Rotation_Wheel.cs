@@ -5,6 +5,7 @@ using System.Collections;
 /// </summary>
 public class Rotation_Wheel : MonoBehaviour {
     public bool hasStarted = false;
+    public bool hasEnded = false;
     public bool dropped = false;
     public float dropTimer = 0.0f;
     private float prevDropTimer;
@@ -26,6 +27,8 @@ public class Rotation_Wheel : MonoBehaviour {
     {
         hasStarted = false;
         prevDropTimer = dropTimer;
+        rot_speedIncrease = 1;
+        
     }
 
     public void Update()
@@ -41,7 +44,10 @@ public class Rotation_Wheel : MonoBehaviour {
             //rotates the wheel
             Rotate();
 
-           
+            if (hasEnded == true)
+            {
+                End();
+            }
             //rotates the key object with the wheel
             //RotateKey();
         }
@@ -62,13 +68,20 @@ public class Rotation_Wheel : MonoBehaviour {
         if (puzzleDoor.open == true) { hasStarted = true;}
     }
 
+
+    
     //function that allows the key to rotate with the wheel
     public void RotateKey()
     {
+
+        
         keys.transform.position = targetKeyPos.position;
-        keys.transform.forward = targetKeyPos.forward;
-        //makes sure that the key is the child of the wheel
-        targetKeyPos.SetParent(Wheel.transform);
+            keys.transform.forward = targetKeyPos.forward;
+
+            //makes sure that the key is the child of the wheel
+            targetKeyPos.SetParent(Wheel.transform);
+      
+        
         //targetKeyPos.RotateAround(Wheel.transform.position, Vector3.up, -rotSpeed * Time.deltaTime);
     }
 
@@ -81,7 +94,7 @@ public class Rotation_Wheel : MonoBehaviour {
         {
             dropTimer = prevDropTimer;
             dropped = false;
-            
+           
 
         }
 
@@ -92,18 +105,31 @@ public class Rotation_Wheel : MonoBehaviour {
         }
     }
 
+    // Rotation Speed Multiplier 
+    private float rot_speedIncrease;
+
     public void ResetKey()
     {
+        if(rot_speedIncrease <= 8.0f)
+        rot_speedIncrease += .005f;
         RotateKey();
         //keys.transform.position = targetKeyPos.position;
         //keys.transform.rotation = targetKeyPos.rotation;
+        
+    }
+
+    
+    public bool hasGrabbed = false;
+    public void Grab()
+    {
+        hasGrabbed = true;
     }
 
     private bool rot_start = false;
     //should cause the wheel to spin counter clockwise
     public void Rotate()
     { 
-        Wheel.transform.Rotate(0,-rotSpeed * Time.deltaTime, 0);
+        Wheel.transform.Rotate(0,-rotSpeed * Time.deltaTime * rot_speedIncrease, 0);
         if (rot_start == false)
         {
             if (hasStarted)
@@ -113,6 +139,28 @@ public class Rotation_Wheel : MonoBehaviour {
             }
         }
 
+        if (rot_start == true)
+        {
+            if (puzzleDoor.open == false && hasGrabbed == false)
+            {
+                ResetKey();
+            }
+
+            if (puzzleDoor.open == true && hasGrabbed == true)
+            {
+                puzzleDoor.open = false;
+                hasEnded = true;
+            }
+            
+
+            
+        }
+
+    }
+
+    public void End()
+    {
+        //This is where we can add the slowing down sound, and light shutdown
     }
 
 

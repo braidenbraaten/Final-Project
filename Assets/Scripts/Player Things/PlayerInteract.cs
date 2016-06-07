@@ -119,10 +119,23 @@ public class PlayerInteract : MonoBehaviour {
             if (hasGrabed == true)
             {
                 GameObject.Find(hit.collider.gameObject.name).transform.SetParent(playerCam.transform);
+                if(hit.collider.gameObject.GetComponent<Rigidbody>())
+                GameObject.Find(hit.collider.gameObject.name).GetComponent<Rigidbody>().isKinematic = true;
 
             }
             //letting go of the object    // MAKE SURE THAT THE OBJECT IS A GRABABLE OBJECT THAT WE ARE SETTING THE PARENT TO NULL FOR !!!!!!!!!!!!!!!!!!!!
-            else if (hasGrabed == false && hit.collider.gameObject.tag == "Can Grab") { GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null); }
+            else if (hasGrabed == false && hit.collider.gameObject.tag == "Can Grab")
+            {   GameObject.Find(hit.collider.gameObject.name).transform.SetParent(null);
+                //asks if the object is already kinematic, and if so, then set it to false (so gravity will work on it again)
+
+                if (hit.collider.gameObject.GetComponent<Rigidbody>())
+                {
+                    if (GameObject.Find(hit.collider.gameObject.name).GetComponent<Rigidbody>().isKinematic == true)
+                    {
+                        GameObject.Find(hit.collider.gameObject.name).GetComponent<Rigidbody>().isKinematic = false;
+                    }
+                }
+            }
 
             if (Input.GetKeyUp(letGoCode))
             {
