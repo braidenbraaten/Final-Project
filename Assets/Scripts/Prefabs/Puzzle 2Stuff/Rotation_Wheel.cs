@@ -4,6 +4,7 @@ using System.Collections;
 /// This is the rotation wheel that will rotate the key object in either a circle motion or oval esc... 
 /// </summary>
 public class Rotation_Wheel : MonoBehaviour {
+    public RunwayLights runwayLights;
     public bool hasStarted = false;
     public bool hasEnded = false;
     public bool dropped = false;
@@ -27,13 +28,13 @@ public class Rotation_Wheel : MonoBehaviour {
     {
         hasStarted = false;
         prevDropTimer = dropTimer;
-        rot_speedIncrease = 1;
+        rot_speedIncrease = 16;
         
     }
 
     public void Update()
     {
-        
+        runwayLights.runLightProgram();
         prevKeyPos = targetKeyPos;
 
    
@@ -110,8 +111,7 @@ public class Rotation_Wheel : MonoBehaviour {
 
     public void ResetKey()
     {
-        if(rot_speedIncrease <= 8.0f)
-        rot_speedIncrease += .005f;
+        
         RotateKey();
         //keys.transform.position = targetKeyPos.position;
         //keys.transform.rotation = targetKeyPos.rotation;

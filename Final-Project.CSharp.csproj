@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -98,6 +92,7 @@
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\ItemLanes.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\Puzzle_2.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\Rotation_Wheel.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\RunwayLights.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Day-Night Skyboxes\Textures\Readme for Assigning.txt" />
