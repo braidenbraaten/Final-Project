@@ -15,16 +15,27 @@ public class Puzzle_2 : MonoBehaviour {
     public Rotation_Wheel wheel;
     public Door coolerDoor;
     public ItemLanes Lanes;
+    public RunwayLights myLights;
 
     //in order to know if the wheel is jammed or spinning
     public bool hasStarted = false;
     //determins if the key has been dropped or not
     public bool hasDropped = false;
+
+    public bool hasGrabedKey = false;
+
+    public bool end_puzzle = false;
+
     //audio clip for when the wheel is "Jammed"
     public AudioClip jammedSound;
 
     void Update()
     {
+        if (end_puzzle)
+        {
+            End();
+        }
+
         //when the player opens the door, the keys will drop
         if (coolerDoor.open)
         {
@@ -32,14 +43,24 @@ public class Puzzle_2 : MonoBehaviour {
         }
 
 
-
+        //if the key has been dropped for the first time yet
         if (hasStarted)
-        {
+        {   //whenever the key is dropped 
             if (hasDropped)
-            {
-                
+            {  //if the player has grabbed the key
+                if (hasGrabedKey)
+                {   //then end the puzzle
+                    end_puzzle = true;
+                }
             }
         }
+    }
+
+
+    void End()
+    {
+        //play end sound effect, 
+        //start the next puzzle
     }
 
 

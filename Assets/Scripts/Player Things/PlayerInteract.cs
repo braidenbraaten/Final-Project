@@ -70,6 +70,8 @@ public class PlayerInteract : MonoBehaviour {
             //if chapter 1 (or something like that) 
             if (puzzle1_Active == true)
             {
+                
+
                 //if we interact with the Till
                 if (hit.collider.gameObject.tag == "Till")
                 {
@@ -97,8 +99,15 @@ public class PlayerInteract : MonoBehaviour {
             }
 
             //if puzzle 2 is active
-          
-
+            if (puzzle2_Active == true)
+            {  //if we collide with the key and grab the keys
+                if (hit.collider.gameObject == GameObject.Find("KeyObject") || GameObject.Find("Key") && Input.GetKeyDown(grabCode))
+                {
+                    //end the puzzle and start the next
+                    GameObject.Find("Puzzle_2").BroadcastMessage("end_puzzle", true);
+                }
+            }
+            
             
 
         }

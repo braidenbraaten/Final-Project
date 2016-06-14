@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Prefabs\Notifications\HoverOver.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 1Stuff\Puzzle_1.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 1Stuff\Socket.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\InvisVoid.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\ItemLanes.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\Puzzle_2.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\Rotation_Wheel.cs" />

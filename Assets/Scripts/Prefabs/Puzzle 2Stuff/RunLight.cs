@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// This class holds the individual light associated with the runway lights
+/// </summary>
 public class RunLight : MonoBehaviour {
     public Light myLight;
     public Light prevLight;

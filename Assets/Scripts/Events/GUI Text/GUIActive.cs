@@ -15,6 +15,8 @@ public class GUIActive : MonoBehaviour {
     float lightPulse;
     public float lightPulseTimer;
     public float timer;
+    public AudioSource notifSound;
+
 
     float prevLightTimer;
 
@@ -48,7 +50,7 @@ public class GUIActive : MonoBehaviour {
         textObject.GetComponent<MeshRenderer>().enabled = true;
         timer1 = true;
         finishTime = false;
-        
+        notifSound.Play();
         
         
     }
@@ -85,6 +87,8 @@ public class GUIActive : MonoBehaviour {
 
     void OnTriggerExit()
     {
+        notifSound.Stop();
+
         if (timer > 0)
         {
             finishTime = true;

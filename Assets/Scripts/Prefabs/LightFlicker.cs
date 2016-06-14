@@ -8,6 +8,7 @@ using System.Collections;
 public class LightFlicker : MonoBehaviour {
     public Light inputLight;
     public float waitTimer;
+    public Vector2 BrightnessRange;
     float lightIntensValue;
     float initTimer;
 	// Use this for initialization
@@ -37,13 +38,13 @@ public class LightFlicker : MonoBehaviour {
     //makes this into a coroutine 
    IEnumerator flickLight()
     {
-
+        // 0 & .3
         //code things
-        inputLight.intensity = Random.Range(0.0f, 8.0f);
+        inputLight.intensity = Random.Range(BrightnessRange.x, BrightnessRange.y);
         //wait
         yield return new WaitForSeconds(.5f);
         //then do these code things
-        inputLight.intensity = 8.0f;
+        inputLight.intensity = BrightnessRange.y;
 
 
     }

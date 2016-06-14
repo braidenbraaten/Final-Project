@@ -11,6 +11,7 @@ public class RunwayLights : MonoBehaviour {
 
     //list of the lights
     public List<RunLight> lightList;
+    private Color lightStartColor;
 
     //the timer for when the lights will flash after the keys fall into the void
     public float wrongFlashTimer;
@@ -31,8 +32,8 @@ public class RunwayLights : MonoBehaviour {
 
     void Start()
     {
-       
 
+        lightStartColor = lightList[0].myLight.color;
         startLightValue = Random.Range(0, 1);
 
         prevTimer = FlashTimer;
@@ -46,7 +47,6 @@ public class RunwayLights : MonoBehaviour {
         {
             light_on = false;
         }
-
 
         if (light_on)
         {
@@ -74,7 +74,7 @@ public class RunwayLights : MonoBehaviour {
         else {CycleLights();}
     }
 
-
+    //make the lights flash at you, unless you miss
     public void CycleLights()
     {
         FlashTimer -= Time.deltaTime;
@@ -83,28 +83,26 @@ public class RunwayLights : MonoBehaviour {
         {
             for (int i = 0; i < lightList.Count; i++)
             {
+                lightList[i].myLight.color = lightStartColor;
                 lightList[i].isOn = !lightList[i].isOn;
             }
             FlashTimer = prevTimer;
         }
     }
 
+    // triggered when the Keys collide with the invis wall
     public void InVoid()
     {
         //timer countdown
         wrongFlashTimer -= Time.deltaTime;
+        //play sound here 
+
         //have the lights turn on and off
         if (wrongFlashTimer < 0)
         {
-
-            //change the lights color to red
             for (int i = 0; i < lightList.Count; i++)
             {
                 lightList[i].myLight.color = Color.red;
-            }
-
-            for (int i = 0; i < lightList.Count; i++)
-            {
                 lightList[i].isOn = !lightList[i].isOn;
             }
             wrongFlashTimer = prevWrongTimer;

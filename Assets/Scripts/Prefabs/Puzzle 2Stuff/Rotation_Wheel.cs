@@ -43,13 +43,13 @@ public class Rotation_Wheel : MonoBehaviour {
     public void Update()
     {
 
-        if (inVoid)
-        {
-            runwayLights.InVoid();
-        }
-        else {
-            runwayLights.CycleLights();
-        }
+        //if (inVoid)
+        //{
+        //    runwayLights.InVoid();
+        //}
+        //else {
+        //    runwayLights.CycleLights();
+        //}
         
         
           
@@ -174,7 +174,7 @@ public class Rotation_Wheel : MonoBehaviour {
                 hasEnded = true;
             }
             
-
+           
             
         }
 
