@@ -2,74 +2,114 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// We want to have the lights go on and off in opposite order  0101010101
+/// </summary>
+
+
 public class RunwayLights : MonoBehaviour {
-    public List<Light> lightList;
-    private List<Light> prevLightList;
-    public int amtOfFailFlashes;
-    public bool fail = false;
-	// Use this for initialization
-	void Start () {
-        prevLightList = lightList;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-    bool lightOn = true;
-    public void runLightProgram()
+    //list of the lights
+    public List<RunLight> lightList;
+
+    //the timer for when the lights will flash after the keys fall into the void
+    public float wrongFlashTimer;
+    private float prevWrongTimer;
+
+    //starting time and timer for light flash rotator
+    public  float FlashTimer;
+    private float prevTimer;
+
+    //if the keys fell bellow / hit the collider of the void section
+    public bool missed = false;
+
+    //bool to check if the light is on
+    private bool light_on = false;
+
+    //have it be different for each instance of the game for what light is on, and which light is off
+    private int startLightValue;
+
+    void Start()
     {
-        
-        
-        for (int i = 0; i < lightList.Count; i++)
+       
+
+        startLightValue = Random.Range(0, 1);
+
+        prevTimer = FlashTimer;
+        prevWrongTimer = wrongFlashTimer;
+
+        if (startLightValue == 1)
         {
-            lightOn = !lightOn;
+            light_on = true;
+        }
+        else if (startLightValue == 0)
+        {
+            light_on = false;
+        }
 
-            if (lightOn)
+
+        if (light_on)
+        {
+            lightList[0].isOn = true;
+            lightList[1].isOn = false;
+            lightList[2].isOn = true;
+            lightList[3].isOn = false;
+        }
+        else {
+            lightList[0].isOn = false;
+            lightList[1].isOn = true;
+            lightList[2].isOn = false;
+            lightList[3].isOn = true;
+        }
+
+    }
+    
+
+    public void Update()
+    {
+        if (missed)
+        {
+            InVoid();
+        }
+        else {CycleLights();}
+    }
+
+
+    public void CycleLights()
+    {
+        FlashTimer -= Time.deltaTime;
+
+        if (FlashTimer < 0)
+        {
+            for (int i = 0; i < lightList.Count; i++)
             {
-                lightList[i].enabled = true;
+                lightList[i].isOn = !lightList[i].isOn;
             }
-
-            if (lightOn == false)
-            {
-                lightList[i].enabled = false;
-            }
-
+            FlashTimer = prevTimer;
         }
     }
 
-    bool on = false;
-    public void runLightFail()
+    public void InVoid()
     {
-        //init the bool to turn the lights on and off 
-        
-        for (int i = 0; i < lightList.Count; i++)
+        //timer countdown
+        wrongFlashTimer -= Time.deltaTime;
+        //have the lights turn on and off
+        if (wrongFlashTimer < 0)
         {
-            lightList[i].color = Color.red;
+
+            //change the lights color to red
+            for (int i = 0; i < lightList.Count; i++)
+            {
+                lightList[i].myLight.color = Color.red;
+            }
+
+            for (int i = 0; i < lightList.Count; i++)
+            {
+                lightList[i].isOn = !lightList[i].isOn;
+            }
+            wrongFlashTimer = prevWrongTimer;
         }
 
-        for (int j = 0; j < amtOfFailFlashes; j++)
-        {
-            if (on == false)
-            {
-                for (int i = 0; i < lightList.Count; i++)
-                {
-                    lightList[i].enabled = false;
-                }
-                on = true;
-            }
-            else if (on)
-            {
-                for (int i = 0; i < lightList.Count; i++)
-                {
-                    lightList[i].enabled = true;
-                }
-                on = false;
-            }
-        }
     }
-
-
 
 }

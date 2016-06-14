@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\ItemLanes.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\Puzzle_2.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\Rotation_Wheel.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\RunLight.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Puzzle 2Stuff\RunwayLights.cs" />
   </ItemGroup>
   <ItemGroup>

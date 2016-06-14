@@ -5,8 +5,14 @@ using System.Collections;
 /// </summary>
 public class Rotation_Wheel : MonoBehaviour {
     public RunwayLights runwayLights;
+    public GameObject InvisWall;
+
+    //if the keys have fallen into the void 
+    public bool inVoid = false;
+
     public bool hasStarted = false;
     public bool hasEnded = false;
+    //if the keys have dropped from the holder
     public bool dropped = false;
     public float dropTimer = 0.0f;
     private float prevDropTimer;
@@ -26,6 +32,8 @@ public class Rotation_Wheel : MonoBehaviour {
 
     void Start()
     {
+
+
         hasStarted = false;
         prevDropTimer = dropTimer;
         rot_speedIncrease = 16;
@@ -34,7 +42,21 @@ public class Rotation_Wheel : MonoBehaviour {
 
     public void Update()
     {
-        runwayLights.runLightProgram();
+
+        if (inVoid)
+        {
+            runwayLights.InVoid();
+        }
+        else {
+            runwayLights.CycleLights();
+        }
+        
+        
+          
+        
+        
+        
+
         prevKeyPos = targetKeyPos;
 
    

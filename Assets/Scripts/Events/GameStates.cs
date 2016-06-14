@@ -1,16 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 /// <summary>
 /// different states and chapters for the game
 /// </summary>
 
 public class GameStates : MonoBehaviour {
+
+    private int _currentScore;
+
+    public static GameStates instance;
+
+    void Awake()
+    {
+        instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+
+
+    public void AdjustScore(int num)
+    {
+        _currentScore += num;
+    }
+
+    void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 10, 10), "Score = " + _currentScore);
+    }
+
     //different states of the game
     public GameObject GameStateObject;
     public Scene mainMenuScene = SceneManager.GetSceneByName("mainMenu");
     public Scene finalProjectScene = SceneManager.GetSceneByName("FinalProject");
-
+    
    public enum States {MAIN_MENU, PAUSE, PLAY, GAME_OVER, QUIT, LOGO };
     static public bool  haveLoadedMenu = false;
     static public bool haveLoadedPlay = false;
@@ -20,11 +45,7 @@ public class GameStates : MonoBehaviour {
    public  States states;
     public Chapters chapters;
     // Use this for initialization
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
+  
     void Start () {
         //should change to team logo intro and then start main menu scene 
         if (SceneManager.GetActiveScene().name != "FinalProject")
