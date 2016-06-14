@@ -102,6 +102,7 @@
     <None Include="Assets\Materials\1_FlatColor.shader" />
     <None Include="Assets\Materials\NightVisionShader.shader" />
     <None Include="Assets\Materials\_lambert.shader" />
+    <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\RainStuff\Prefab\RainShader.shader" />
     <None Include="Assets\RainStuff\Readme.txt" />
   </ItemGroup>
