@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 /// <summary>
 /// This Puzzle (2) will be the puzzle where the player will have to get the key from the beverage cooler, they will have to get the keys to drop from the rotating chain
 /// the first time the player trys to use it it will be stuck and the part will fall to the void (dark area that the player canno't see), the lights will flicker, and then the keys will 
@@ -13,7 +14,7 @@ public class Puzzle_2 : MonoBehaviour {
     //we want the wheel, the door, the key, the lanes, and what to do with them
     public Rotation_Wheel wheel;
     public Door coolerDoor;
-    public ItemLanes Lanes;
+    public List<GameObject> bottomLanes;
     public RunwayLights myLights;
     public AudioSource end_sound;
     //The sphere that is used as the rotator for the keys
@@ -33,8 +34,12 @@ public class Puzzle_2 : MonoBehaviour {
 
     void Update()
     {
+        if (end_puzzle)
+        {
+            End();
+        }
+     
         
-
         //when the player opens the door, the keys will drop
         if (coolerDoor.open)
         {
@@ -56,13 +61,26 @@ public class Puzzle_2 : MonoBehaviour {
     }
 
 
-    void End()
-    { 
-        end_sound.Play();
-        rotatorSphere.AddComponent<Rigidbody>();
+
+    private bool hasDoneOnce = false;
+    public void End()
+    {
+        if (hasDoneOnce == false)
+        {
+            end_sound.Play();
+            rotatorSphere.AddComponent<Rigidbody>();
+
+            for (int i = 0; i < bottomLanes.Count; i++)
+            {
+                bottomLanes[i].AddComponent<Rigidbody>();
+            }
+
             myLights.TurnOffLights();
 
-        coolerDoor.enabled = false;
+            coolerDoor.enabled = false;
+
+            hasDoneOnce = true;
+        }
         
         //play end sound effect, 
         //start the next puzzle

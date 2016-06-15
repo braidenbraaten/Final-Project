@@ -7,6 +7,8 @@ using System.Collections;
 /// </summary>
 
 public class PlayerInteract : MonoBehaviour {
+
+    
     public Camera playerCam;
     public Transform playerTransform;
     public Vector3 camRayOffPos;
@@ -104,7 +106,8 @@ public class PlayerInteract : MonoBehaviour {
                 if (hit.collider.gameObject == GameObject.Find("KeyObject") || hit.collider.gameObject == GameObject.Find("Key") && Input.GetKeyDown(grabCode))
                 {
                     //end the puzzle and start the next
-                    
+
+                    GameObject.FindObjectOfType<Puzzle_2>().end_puzzle = true;
                 }
             }
             
