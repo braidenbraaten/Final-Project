@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Events\GUI Text\GUIActive.cs" />
     <Compile Include="Assets\Scripts\Events\GUI Text\InteractWith.cs" />
     <Compile Include="Assets\Scripts\Events\GameStates.cs" />
+    <Compile Include="Assets\Scripts\Events\InGameStates.cs" />
     <Compile Include="Assets\Scripts\Events\ObjectSwitchTemplate.cs" />
     <Compile Include="Assets\Scripts\Inter_Object.cs" />
     <Compile Include="Assets\Scripts\MainMenu\SwitchToPlay.cs" />

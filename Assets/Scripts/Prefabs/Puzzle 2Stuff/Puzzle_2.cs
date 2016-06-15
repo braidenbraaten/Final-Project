@@ -11,11 +11,13 @@ using System.Collections;
 /// </summary>
 public class Puzzle_2 : MonoBehaviour {
     //we want the wheel, the door, the key, the lanes, and what to do with them
-   
     public Rotation_Wheel wheel;
     public Door coolerDoor;
     public ItemLanes Lanes;
     public RunwayLights myLights;
+    public AudioSource end_sound;
+    //The sphere that is used as the rotator for the keys
+    public GameObject rotatorSphere;
 
     //in order to know if the wheel is jammed or spinning
     public bool hasStarted = false;
@@ -31,10 +33,7 @@ public class Puzzle_2 : MonoBehaviour {
 
     void Update()
     {
-        if (end_puzzle)
-        {
-            End();
-        }
+        
 
         //when the player opens the door, the keys will drop
         if (coolerDoor.open)
@@ -58,7 +57,13 @@ public class Puzzle_2 : MonoBehaviour {
 
 
     void End()
-    {
+    { 
+        end_sound.Play();
+        rotatorSphere.AddComponent<Rigidbody>();
+            myLights.TurnOffLights();
+
+        coolerDoor.enabled = false;
+        
         //play end sound effect, 
         //start the next puzzle
     }

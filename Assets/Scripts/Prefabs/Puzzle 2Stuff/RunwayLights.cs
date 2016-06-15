@@ -110,4 +110,12 @@ public class RunwayLights : MonoBehaviour {
 
     }
 
+    public void TurnOffLights()
+    {
+        for (int i = 0; i < lightList.Count; i++)
+        {
+            lightList[i].isOn = false;
+        }
+    }
+
 }

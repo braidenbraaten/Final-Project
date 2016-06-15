@@ -101,10 +101,10 @@ public class PlayerInteract : MonoBehaviour {
             //if puzzle 2 is active
             if (puzzle2_Active == true)
             {  //if we collide with the key and grab the keys
-                if (hit.collider.gameObject == GameObject.Find("KeyObject") || GameObject.Find("Key") && Input.GetKeyDown(grabCode))
+                if (hit.collider.gameObject == GameObject.Find("KeyObject") || hit.collider.gameObject == GameObject.Find("Key") && Input.GetKeyDown(grabCode))
                 {
                     //end the puzzle and start the next
-                    GameObject.Find("Puzzle_2").BroadcastMessage("end_puzzle", true);
+                    
                 }
             }
             
